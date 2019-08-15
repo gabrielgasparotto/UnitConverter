@@ -16,17 +16,6 @@ class CategoryRoute extends StatelessWidget {
     'Currency',
   ];
 
-  static const baseColors = <Color>[
-    Colors.teal,
-    Colors.orange,
-    Colors.pinkAccent,
-    Colors.blueAccent,
-    Colors.yellow,
-    Colors.greenAccent,
-    Colors.purpleAccent,
-    Colors.red,
-  ];
-
   Widget buildCategoryRoute(Orientation orientation, List<Widget> categories) {
     if (orientation == Orientation.portrait) {
       return ListView.builder(
@@ -49,7 +38,6 @@ class CategoryRoute extends StatelessWidget {
     for (var i = 0; i < categoryNames.length; i++) {
       categories.add(Category(
         name: categoryNames[i],
-        color: baseColors[i],
         iconLocation: Icons.cake,
       ));
     }
