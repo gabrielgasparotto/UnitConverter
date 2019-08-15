@@ -1,16 +1,24 @@
+import 'package:category_app/united.dart';
 import 'package:flutter/material.dart';
 
-class Category extends StatelessWidget {
+import 'converter_route.dart';
 
+class Category extends StatelessWidget {
   final String name;
+  final ColorSwatch color;
   final IconData iconLocation;
+  final List<Unit> units;
 
   const Category({
     Key key,
     @required this.name,
+    @required this.color,
     @required this.iconLocation,
+    @required this.units,
   })  : assert(name != null),
+        assert(color != null),
         assert(iconLocation != null),
+        assert(units != null),
         super(key: key);
 
   @override
@@ -21,10 +29,10 @@ class Category extends StatelessWidget {
         height: 100.0,
         child: InkWell(
           borderRadius: BorderRadius.circular(16.0),
-          highlightColor: Colors.pink[100],
-          splashColor: Colors.pink[100],
+          highlightColor: color,
+          splashColor: color,
           onTap: () {
-            print('bom dia');
+            navigateToConverter(context);
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -54,6 +62,28 @@ class Category extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void navigateToConverter(BuildContext context) {
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+    }
+    Navigator.of(context).push(
+      MaterialPageRoute<Null>(
+        builder: (BuildContext context) {
+          return Scaffold(
+            body: ConverterRoute(units: units),
+            resizeToAvoidBottomInset: false,
+            appBar: AppBar(
+              elevation: 1.0,
+              title: Text(name, style: TextStyle(color: Colors.black)),
+              centerTitle: true,
+              backgroundColor: color[100],
+            ),
+          );
+        },
       ),
     );
   }

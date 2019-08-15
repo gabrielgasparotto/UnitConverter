@@ -1,8 +1,9 @@
+import 'package:category_app/united.dart';
 import 'package:flutter/material.dart';
 
 import 'category.dart';
 
-class CategoryRoute extends StatelessWidget {
+class CategoryRoute extends StatefulWidget {
   const CategoryRoute();
 
   static const categoryNames = <String>[
@@ -16,6 +17,22 @@ class CategoryRoute extends StatelessWidget {
     'Currency',
   ];
 
+  static const baseColors = <Color>[
+    Colors.teal,
+    Colors.orange,
+    Colors.pinkAccent,
+    Colors.blueAccent,
+    Colors.yellow,
+    Colors.greenAccent,
+    Colors.purpleAccent,
+    Colors.red,
+  ];
+
+  @override
+  _CategoryRouteState createState() => _CategoryRouteState();
+}
+
+class _CategoryRouteState extends State<CategoryRoute> {
   Widget buildCategoryRoute(Orientation orientation, List<Widget> categories) {
     if (orientation == Orientation.portrait) {
       return ListView.builder(
@@ -31,14 +48,26 @@ class CategoryRoute extends StatelessWidget {
     }
   }
 
+  List<Unit> retrieveUnitList(String categoryName) {
+    return List.generate(10, (int i) {
+      i += 1;
+      return Unit(
+        name: '$categoryName Unit $i',
+        conversion: i.toDouble(),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final categories = <Category>[];
 
-    for (var i = 0; i < categoryNames.length; i++) {
+    for (var i = 0; i < CategoryRoute.categoryNames.length; i++) {
       categories.add(Category(
-        name: categoryNames[i],
+        name: CategoryRoute.categoryNames[i],
+        color: CategoryRoute.baseColors[i],
         iconLocation: Icons.cake,
+        units: retrieveUnitList(CategoryRoute.categoryNames[i]),
       ));
     }
 

@@ -12,13 +12,15 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Unit Converter'),
+          elevation: 1.0,
+          title: Text('Unit Converter', style: TextStyle(color: Colors.black)),
+          centerTitle: true,
         ),
         body: Center(
           child: CategoryRoute(),
         ),
       ),
-      theme: ThemeData(primarySwatch: Colors.pink),
+      theme: ThemeData(primarySwatch: Colors.grey),
     );
   }
 }
