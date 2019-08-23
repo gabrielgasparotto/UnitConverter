@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           elevation: 1.0,
           title: Text('Unit Converter', style: TextStyle(color: Colors.black)),
-          centerTitle: true,
         ),
         body: Center(
           child: CategoryRoute(),

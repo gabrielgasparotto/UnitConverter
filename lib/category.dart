@@ -79,7 +79,6 @@ class Category extends StatelessWidget {
             appBar: AppBar(
               elevation: 1.0,
               title: Text(name, style: TextStyle(color: Colors.black)),
-              centerTitle: true,
               backgroundColor: color[100],
             ),
           );
